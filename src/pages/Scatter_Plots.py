@@ -11,7 +11,6 @@ from plotly.subplots import make_subplots
 import pandas as pd
 import numpy as np
 from datetime import date
-import matplotlib.pyplot as plt
 
 dfvol = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
 dfvol.columns = dfvol.columns.map(''.join)
