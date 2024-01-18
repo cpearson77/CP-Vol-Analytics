@@ -10,7 +10,7 @@ from scipy import stats
 import math as math
 
 suppress_callback_exceptions=True
-dash.register_page(__name__, path='/')
+#dash.register_page(__name__, path='/')
 
 #implied vol
 dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])

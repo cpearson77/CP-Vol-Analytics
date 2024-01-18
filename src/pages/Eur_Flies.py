@@ -423,7 +423,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-dash.register_page(__name__)
+#dash.register_page(__name__)
 layout = dbc.Container([
          dbc.Row([dbc.Col(slide1)]),
          dbc.Row([dbc.Col(fly13graph),

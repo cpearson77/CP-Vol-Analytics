@@ -438,7 +438,7 @@ def update_figure(vol, vol1, vol2, selected_year):
         font=dict(size=10))
     return fig2
 
-dash.register_page(__name__)
+#dash.register_page(__name__)
 
 layout = dbc.Container([
     dbc.Row([dbc.Col(html.Div('Historic Swap and Vol Data'))]),
