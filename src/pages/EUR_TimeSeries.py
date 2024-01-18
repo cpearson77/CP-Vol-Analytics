@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 import math as math
 
 suppress_callback_exceptions=True
-dfswap = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
 dfswap.columns = dfswap.columns.map(''.join)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
@@ -30,7 +30,7 @@ dfswap1 = dfswap.reset_index(level=0)
 dfswap['Year'] = dfswap['Year'].astype('int64')
 dfswap["Year"]=dfswap["Year"].round(0)
 
-dfvol = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
 dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
@@ -49,7 +49,7 @@ dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y"]
 dfvol1 = dfvol.head(-66)
 #for realised vol
-dfdswap = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+dfdswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
 dfdswap = dfdswap.tail(-1)
 dfdswap1 = dfdswap.head(-66)
 index = dfdswap1.index

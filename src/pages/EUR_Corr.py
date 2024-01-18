@@ -11,7 +11,7 @@ suppress_callback_exceptions=True
 dash.register_page(__name__)
 #grid of corr 22d lookback
 #index adjusted by 6 x (no of days -1)
-dfswap = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='Swaps',header=[0],index_col=[0])
+dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='Swaps',header=[0],index_col=[0])
 dfswap = dfswap.tail(-1)
 dfswap.index.rename('Date', inplace=True)
 dfswap= dfswap.ffill()

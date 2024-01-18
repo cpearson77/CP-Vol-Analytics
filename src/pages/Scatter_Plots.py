@@ -25,7 +25,7 @@ dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20
                           "15y7y", "15y10y", "15y15y", "15y20y", "15y30y","20y1y", "20y2y", "20y3y", "20y5y",
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y", "Year"]
 dfvol.index.rename('Date', inplace=True)
-dfswap = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
 dfswap.columns = dfswap.columns.map(''.join)
 dfswap = dfswap.tail(-1)
 dfswap = dfswap[0:1345]
