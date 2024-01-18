@@ -139,7 +139,7 @@ dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.strftime('%d/%m/%y')
 
 #impliedrealisedratio
 dfdvol1 = dfdvol.head(-66)
-dfrat = dfdswap.div(dfdvol1)
+#dfrat = dfdswap.div(dfdvol1)
 dfrat=dfrat.sort_index(ascending=False)
 dfrat =dfrat.stack(level=0)
 dfrat = dfrat.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
