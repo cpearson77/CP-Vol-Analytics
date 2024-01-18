@@ -3,8 +3,5 @@ pandas == 2.2.0rc0
 gunicorn
 dash-tools
 dash-bootstrap-components
-<<<<<<< HEAD
 dash-ag-grid
-=======
-dash-ag-grid
->>>>>>> 2c741fb4c62d8599debf54ddd4507e5f3d2bb5a4
+
