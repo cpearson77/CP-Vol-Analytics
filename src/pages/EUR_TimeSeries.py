@@ -1,16 +1,10 @@
 import dash
 from dash import Dash, dcc, html, Input, Output, callback
 from dash.dependencies import Input, Output
-import plotly.express as px
-from dash import html
 import dash_bootstrap_components as dbc
 from dash import html
-from plotly.subplots import make_subplots
 import pandas as pd
-import numpy as np
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from scipy import stats
 import math as math
 
 suppress_callback_exceptions=True

@@ -4,4 +4,5 @@ gunicorn
 dash-tools
 dash-bootstrap-components
 dash-ag-grid
+scipy
 

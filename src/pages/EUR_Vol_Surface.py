@@ -1,16 +1,11 @@
 import dash
-import dash_mantine_components as dmc
 import dash_ag_grid as dag
 from dash import Dash, dcc, html, Input, Output, callback, dash_table
 from dash.dependencies import Input, Output
 import plotly.express as px
-from dash import html
 import dash_bootstrap_components as dbc
 from dash import html
-from plotly.subplots import make_subplots
 import pandas as pd
-import numpy as np
-from datetime import date
 from scipy import stats
 import math as math
 

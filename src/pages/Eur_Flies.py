@@ -2,16 +2,10 @@ import dash
 from dash import Dash, dcc, html, Input, Output, callback
 from dash.dependencies import Input, Output
 import plotly.express as px
-from dash import html
 import dash_bootstrap_components as dbc
 from dash import html
-from plotly.subplots import make_subplots
 import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from scipy import stats
-import math as math
+
 
 dfswap = pd.read_excel(r"C:\Users\charl\Documents\master.xlsx", sheet_name='FwdFly',header=[0],index_col=[0])
 dfswap = dfswap.tail(-1)
