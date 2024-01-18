@@ -7,7 +7,9 @@ from dash import html
 import pandas as pd
 
 
-dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfvol = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
 dfvol = dfvol[0:1345]
@@ -25,7 +27,10 @@ dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20
                           "15y7y", "15y10y", "15y15y", "15y20y", "15y30y","20y1y", "20y2y", "20y3y", "20y5y",
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y", "Year"]
 dfvol.index.rename('Date', inplace=True)
-dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+
+#dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+dfswap = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap.columns = dfswap.columns.map(''.join)
 dfswap = dfswap.tail(-1)
 dfswap = dfswap[0:1345]

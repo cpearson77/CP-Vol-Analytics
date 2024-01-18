@@ -13,7 +13,9 @@ suppress_callback_exceptions=True
 #dash.register_page(__name__, path='/')
 
 #implied vol
-dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfswap = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
 dfvol = dfvol[dfvol.columns.drop('Year')]
@@ -35,7 +37,9 @@ dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.date
 dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.strftime('%d/%m/%y')
 
 #implied vol zscore
-dfzs = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfzs = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfzs = pd.read_csv(url,header=[0,1],index_col=0)
 dfzs = dfzs.tail(-1)
 dfzs= dfzs.ffill()
 dfzs = dfzs[dfzs.columns.drop('Year')]
@@ -57,7 +61,9 @@ dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.date
 dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.strftime('%d/%m/%y')
 
 #swaps
-dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+dfswap = pd.read_csv(url,header=[0,1],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
 dfswap = dfswap[dfswap.columns.drop('Year')]
@@ -78,7 +84,9 @@ dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.date
 dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.strftime('%d/%m/%y')
 
 #daily implied vol
-dfdvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfdvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfdvol = pd.read_csv(url,header=[0,1],index_col=0)
 dfdvol = dfdvol.tail(-1)
 dfdvol= dfdvol.ffill()
 dfdvol = dfdvol[dfdvol.columns.drop('Year')]
@@ -99,7 +107,9 @@ dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.date
 dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.strftime('%d/%m/%y')
 
 #realised swap vol
-dfdswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#dfdswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+dfdswap = pd.read_csv(url1,header=[0,1],index_col=0)
 dfdswap = dfdswap.tail(-1)
 dfdswap1 = dfdswap.head(-66)
 index = dfdswap1.index
@@ -159,7 +169,9 @@ dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.date
 dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback vol
-dfvol1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfvol1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfvol1m = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol1m = dfvol1m.tail(-1)
 dfvol1m= dfvol1m.ffill()
 dfvol1m = dfvol1m[dfvol1m.columns.drop('Year')]
@@ -181,7 +193,9 @@ dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.date
 dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback swap
-dfswap1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#dfswap1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+dfswap1m = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap1m = dfswap1m.tail(-1)
 dfswap1m= dfswap1m.ffill()
 dfswap1m = dfswap1m[dfswap1m.columns.drop('Year')]
@@ -221,7 +235,9 @@ dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
 dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #3m lookback vol
-dfvol3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfvol3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfvol3m = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol3m = dfvol3m.tail(-1)
 dfvol3m= dfvol3m.ffill()
 dfvol3m = dfvol3m[dfvol3m.columns.drop('Year')]
@@ -243,7 +259,9 @@ dfvol3m['Date'] = pd.to_datetime(dfvol3m['Date']).dt.date
 dfvol3m['Date'] = pd.to_datetime(dfvol3m['Date']).dt.strftime('%d/%m/%y')
 
 #3m lookback swap
-dfswap3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#dfswap3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
+#url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+dfswap = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap3m = dfswap3m.tail(-1)
 dfswap3m= dfswap3m.ffill()
 dfswap3m = dfswap3m[dfswap3m.columns.drop('Year')]

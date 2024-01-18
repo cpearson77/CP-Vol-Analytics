@@ -7,7 +7,9 @@ from dash import html
 import pandas as pd
 
 
-dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdFly',header=[0],index_col=[0])
+#dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdFly',header=[0],index_col=[0])
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fly1.csv?raw=true'
+dfswap = pd.read_csv(url,header=[0],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
 dfswap.index.rename('Date', inplace=True)
@@ -15,7 +17,9 @@ dfswap = dfswap.reset_index(level=0)
 dfswap['Year'] = dfswap['Year'].astype('int64')
 dfswap["Year"]=dfswap["Year"].round(0)
 
-dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+#dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
+url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+dfvol = pd.read_csv(url1,header=[0,1],index_col=0)
 dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
@@ -423,7 +427,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-#dash.register_page(__name__)
+dash.register_page(__name__)
 layout = dbc.Container([
          dbc.Row([dbc.Col(slide1)]),
          dbc.Row([dbc.Col(fly13graph),
