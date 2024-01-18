@@ -15,7 +15,7 @@ suppress_callback_exceptions=True
 #implied vol
 #dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
 url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
-dfswap = pd.read_csv(url,header=[0,1],index_col=0)
+dfvol = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
 dfvol = dfvol[dfvol.columns.drop('Year')]
@@ -261,7 +261,7 @@ dfvol3m['Date'] = pd.to_datetime(dfvol3m['Date']).dt.strftime('%d/%m/%y')
 #3m lookback swap
 #dfswap3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
 #url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
-dfswap = pd.read_csv(url1,header=[0,1],index_col=0)
+dfswap3m = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap3m = dfswap3m.tail(-1)
 dfswap3m= dfswap3m.ffill()
 dfswap3m = dfswap3m[dfswap3m.columns.drop('Year')]
