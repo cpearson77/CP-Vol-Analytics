@@ -14,7 +14,12 @@ dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
 dfvol = dfvol[0:1345]
 dfvol= dfvol.ffill()
-dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20y", "1m30y","3m1y", "3m2y",
+cols = dfvol.columns
+#cols.remove('fistcolumn')
+for col in cols:
+    dfvol[col] = dfvol[col].astype(float)
+dfvol = dfvol.reset_index(level=0)
+dfvol.columns = ["Date", "1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20y", "1m30y","3m1y", "3m2y",
                           "3m3y", "3m5y", "3m7y", "3m10y", "3m15y", "3m20y", "3m30y", "6m1y", "6m2y", "6m3y", "6m5y",
                           "6m7y", "6m10y", "6m15y", "6m20y", "6m30y","9m1y", "9m2y", "9m3y", "9m5y",
                           "9m7y", "9m10y", "9m15y", "9m20y", "9m30y", "1y1y", "1y2y", "1y3y", "1y5y", "1y7y", "1y10y",
@@ -26,6 +31,9 @@ dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20
                           "10y7y", "10y10y", "10y15y", "10y20y", "10y30y","15y1y", "15y2y", "15y3y", "15y5y",
                           "15y7y", "15y10y", "15y15y", "15y20y", "15y30y","20y1y", "20y2y", "20y3y", "20y5y",
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y", "Year"]
+dfvol['Date'] = pd.to_datetime(dfvol['Date'], format='%d/%m/%Y')
+dfvol = dfvol.set_index('Date')
+dfvol=dfvol.round(0)
 dfvol.index.rename('Date', inplace=True)
 
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -35,7 +43,12 @@ dfswap.columns = dfswap.columns.map(''.join)
 dfswap = dfswap.tail(-1)
 dfswap = dfswap[0:1345]
 dfswap= dfswap.ffill()
-dfswap.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20y", "1m30y","3m1y", "3m2y",
+cols1 = dfswap.columns
+#cols.remove('fistcolumn')
+for col in cols1:
+    dfswap[col] = dfswap[col].astype(float)
+dfswap = dfswap.reset_index(level=0)
+dfswap.columns = ["Date", "1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20y", "1m30y","3m1y", "3m2y",
                           "3m3y", "3m5y", "3m7y", "3m10y", "3m15y", "3m20y", "3m30y", "6m1y", "6m2y", "6m3y", "6m5y",
                           "6m7y", "6m10y", "6m15y", "6m20y", "6m30y","9m1y", "9m2y", "9m3y", "9m5y",
                           "9m7y", "9m10y", "9m15y", "9m20y", "9m30y", "1y1y", "1y2y", "1y3y", "1y5y", "1y7y", "1y10y",
@@ -47,9 +60,12 @@ dfswap.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m2
                           "10y7y", "10y10y", "10y15y", "10y20y", "10y30y","15y1y", "15y2y", "15y3y", "15y5y",
                           "15y7y", "15y10y", "15y15y", "15y20y", "15y30y","20y1y", "20y2y", "20y3y", "20y5y",
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y", "Year"]
-dfswap.index.rename('Date', inplace=True)
+dfswap['Date'] = pd.to_datetime(dfswap['Date'], format='%d/%m/%Y')
+dfswap = dfswap.set_index('Date')
+dfswap=dfswap.round(2)
+#dfswap.index.rename('Date', inplace=True)
 dfswap1 = dfswap.reset_index(level=0)
-#dfswap1['Date'] = pd.to_datetime(dfswap1['Date']).dt.strftime('%d/%m/%y')
+dfswap1['Date'] = pd.to_datetime(dfswap1['Date']).dt.strftime('%d/%m/%y')
 
 dropdown4 = html.Div([
     html.P("Select Vol to plot:"),

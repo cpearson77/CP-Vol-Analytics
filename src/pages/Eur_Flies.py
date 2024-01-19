@@ -12,8 +12,13 @@ url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fly1.csv?raw=tru
 dfswap = pd.read_csv(url,header=[0],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
+cols = dfswap.columns
+#cols.remove('fistcolumn')
+for col in cols:
+    dfswap[col] = dfswap[col].astype(float)
 dfswap.index.rename('Date', inplace=True)
 dfswap = dfswap.reset_index(level=0)
+dfswap['Date'] = pd.to_datetime(dfswap['Date'], format='%d/%m/%Y')
 dfswap['Year'] = dfswap['Year'].astype('int64')
 dfswap["Year"]=dfswap["Year"].round(0)
 
@@ -23,6 +28,10 @@ dfvol = pd.read_csv(url1,header=[0,1],index_col=0)
 dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
+cols1 = dfvol.columns
+#cols.remove('fistcolumn')
+for col in cols1:
+    dfvol[col] = dfvol[col].astype(float)
 dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20y", "1m30y","3m1y", "3m2y",
                           "3m3y", "3m5y", "3m7y", "3m10y", "3m15y", "3m20y", "3m30y", "6m1y", "6m2y", "6m3y", "6m5y",
                           "6m7y", "6m10y", "6m15y", "6m20y", "6m30y","9m1y", "9m2y", "9m3y", "9m5y",
@@ -37,6 +46,7 @@ dfvol.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y", "Year"]
 dfvol.index.rename('Date', inplace=True)
 dfvol = dfvol.reset_index(level=0)
+dfvol['Date'] = pd.to_datetime(dfvol['Date'], format='%d/%m/%Y')
 dfvol['Year'] = dfvol['Year'].astype('int64')
 dfvol["Year"]=dfvol["Year"].round(0)
 

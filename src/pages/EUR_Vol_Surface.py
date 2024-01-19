@@ -19,6 +19,10 @@ dfvol = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
 dfvol = dfvol[dfvol.columns.drop('Year')]
+cols11 = dfvol.columns
+#cols.remove('fistcolumn')
+for col in cols11:
+    dfvol[col] = dfvol[col].astype(float)
 dfvol =dfvol.stack(level=0)
 dfvol = dfvol.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
 dfvol = dfvol.rename(index={'a1m': '1m', 'b3m': '3m','c6m': '6m', 'd9m': '9m', 'e1y': '1y', 'f2y': '2y', 'g3y': '3y', 'h5y': '5y',
@@ -67,7 +71,7 @@ dfzs.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y",
 #swaps
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
 url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
-dfswap = pd.read_csv(url,header=[0,1],index_col=0)
+dfswap = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
 dfswap = dfswap[dfswap.columns.drop('Year')]
