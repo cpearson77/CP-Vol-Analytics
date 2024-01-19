@@ -17,6 +17,10 @@ dfswap = pd.read_csv(url,header=[0],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap.index.rename('Date', inplace=True)
 dfswap= dfswap.ffill()
+cols9 = dfswap.columns
+#cols.remove('fistcolumn')
+for col in cols9:
+    dfswap[col] = dfswap[col].astype(float)
 dfswap1 = (dfswap-dfswap.shift(-1))*100
 dfswap1 = dfswap1.head(-1)
 dfswap2 = dfswap1.rolling(22).corr()
@@ -47,8 +51,8 @@ dfswap7= dfswap7.set_index('Date')
 dfswap7=dfswap7.reset_index(level =0)
 dfswap7.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap7=dfswap7.round(2)
-dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.date
-dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.strftime('%d/%m/%y')
+#dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.date
+#dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.strftime('%d/%m/%y')
 
 #grid of corr 132d lookback
 dfswap8 = dfswap1.rolling(132).corr()
@@ -63,8 +67,8 @@ dfswap10= dfswap10.set_index('Date')
 dfswap10=dfswap10.reset_index(level =0)
 dfswap10.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap10=dfswap10.round(2)
-dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.date
-dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.strftime('%d/%m/%y')
+#dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.date
+#dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.strftime('%d/%m/%y')
 
 #df for graphs 3m lookback
 dfc1 = dfswap1["1y"].rolling(66).corr(dfswap1["2y"])
@@ -99,8 +103,8 @@ dfyear = dfcorr2["Date"].dt.year
 dfcorr3 = pd.concat([dfcorr2, dfyear], axis=1)
 dfcorr3.columns = ["Date", "1s2s", "1s5s", "1s10s", "1s20s", "1s30s", "2s5s", "2s10s", "2s20s", "2s30s", "5s10s", "5s20s", "5s30s",
                   "10s20s", "10s30s", "20s30s", "Year"]
-dfcorr3['Date'] = pd.to_datetime(dfcorr3['Date']).dt.date
-dfcorr3['Date'] = pd.to_datetime(dfcorr3['Date']).dt.strftime('%d/%m/%y')
+#dfcorr3['Date'] = pd.to_datetime(dfcorr3['Date']).dt.date
+#dfcorr3['Date'] = pd.to_datetime(dfcorr3['Date']).dt.strftime('%d/%m/%y')
 dfcorr3['Year'] = dfcorr3['Year'].astype('int64')
 dfcorr3["Year"]=dfcorr3["Year"].round(0)
 

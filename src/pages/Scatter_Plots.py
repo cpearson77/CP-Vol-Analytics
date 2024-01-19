@@ -49,7 +49,7 @@ dfswap.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m2
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y", "Year"]
 dfswap.index.rename('Date', inplace=True)
 dfswap1 = dfswap.reset_index(level=0)
-dfswap1['Date'] = pd.to_datetime(dfswap1['Date']).dt.strftime('%d/%m/%y')
+#dfswap1['Date'] = pd.to_datetime(dfswap1['Date']).dt.strftime('%d/%m/%y')
 
 dropdown4 = html.Div([
     html.P("Select Vol to plot:"),
