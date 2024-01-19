@@ -33,8 +33,8 @@ dfvol.columns = ["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
 dfvol3 = dfvol.reset_index(level=1)
 dfvol3 = dfvol3.reset_index(level=0)
 dfvol3.columns = ["Date","Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.date
-dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.strftime('%d/%m/%y')
+#dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.date
+#dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.strftime('%d/%m/%y')
 
 #implied vol zscore
 #dfzs = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -44,6 +44,10 @@ dfzs = dfzs.tail(-1)
 dfzs= dfzs.ffill()
 dfzs = dfzs[dfzs.columns.drop('Year')]
 dfzs = dfzs.head(66)
+cols = dfzs.columns
+#cols.remove('fistcolumn')
+for col in cols:
+    dfzs[col] = dfzs[col].astype(float)
 dfzs = stats.zscore(dfzs)
 dfzs =dfzs.stack(level=0)
 dfzs = dfzs.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
@@ -57,8 +61,8 @@ dfzs = dfzs.drop(index='15y', level=1)
 dfzs = dfzs.reset_index(level=1)
 dfzs = dfzs.reset_index(level=0)
 dfzs.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.date
-dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.strftime('%d/%m/%y')
+#dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.date
+#dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.strftime('%d/%m/%y')
 
 #swaps
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -80,8 +84,8 @@ dfswap = dfswap.drop(index='15y', level=1)
 dfswap = dfswap.reset_index(level=1)
 dfswap = dfswap.reset_index(level=0)
 dfswap.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.date
-dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.strftime('%d/%m/%y')
+#dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.date
+#dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.strftime('%d/%m/%y')
 
 #daily implied vol
 #dfdvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -90,6 +94,10 @@ dfdvol = pd.read_csv(url,header=[0,1],index_col=0)
 dfdvol = dfdvol.tail(-1)
 dfdvol= dfdvol.ffill()
 dfdvol = dfdvol[dfdvol.columns.drop('Year')]
+cols1 = dfdvol.columns
+#cols.remove('fistcolumn')
+for col in cols1:
+    dfdvol[col] = dfdvol[col].astype(float)
 dfdvol = dfdvol.div(math.sqrt(252))
 dfdvol2 =dfdvol.stack(level=0)
 dfdvol2 = dfdvol2.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
@@ -103,8 +111,8 @@ dfdvol2 = dfdvol2.drop(index='15y', level=1)
 dfdvol2 = dfdvol2.reset_index(level=1)
 dfdvol2 = dfdvol2.reset_index(level=0)
 dfdvol2.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.date
-dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.strftime('%d/%m/%y')
+#dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.date
+#dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.strftime('%d/%m/%y')
 
 #realised swap vol
 #dfdswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -115,6 +123,10 @@ dfdswap1 = dfdswap.head(-66)
 index = dfdswap1.index
 dfdswap= dfdswap.ffill()
 dfdswap = dfdswap[dfdswap.columns.drop('Year')]
+cols2 = dfdswap.columns
+#cols.remove('fistcolumn')
+for col in cols2:
+    dfdswap[col] = dfdswap[col].astype(float)
 dfdswap = (dfdswap-dfdswap.shift(-1))*100
 dfdswap = dfdswap.rolling(66).std()
 dfdswap = dfdswap.dropna()
@@ -134,12 +146,12 @@ dfdswap2 = dfdswap2.drop(index='15y', level=1)
 dfdswap2 = dfdswap2.reset_index(level=1)
 dfdswap2 = dfdswap2.reset_index(level=0)
 dfdswap2.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.date
-dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.strftime('%d/%m/%y')
+#dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.date
+#dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.strftime('%d/%m/%y')
 
 #impliedrealisedratio
 dfdvol1 = dfdvol.head(-66)
-#dfrat = dfdswap.div(dfdvol1)
+dfrat = dfdswap.div(dfdvol1)
 dfrat=dfrat.sort_index(ascending=False)
 dfrat =dfrat.stack(level=0)
 dfrat = dfrat.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
@@ -154,8 +166,8 @@ dfrat = dfrat.drop(index='15y', level=1)
 dfrat = dfrat.reset_index(level=1)
 dfrat = dfrat.reset_index(level=0)
 dfrat.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.date
-dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.strftime('%d/%m/%y')
+#dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.date
+#dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.strftime('%d/%m/%y')
 
 #volsurface line graphs
 dfsurf1 = dfvol.head(8)
@@ -165,8 +177,8 @@ dfsurf4 = pd.concat([dfsurf1, dfsurf2, dfsurf3])
 dfsurf4 = dfsurf4.reset_index(level=1)
 dfsurf4 = dfsurf4.reset_index(level=0)
 dfsurf4.columns = ["Date", "Expiry", "1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.date
-dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.strftime('%d/%m/%y')
+#dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.date
+#dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback vol
 #dfvol1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -175,6 +187,10 @@ dfvol1m = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol1m = dfvol1m.tail(-1)
 dfvol1m= dfvol1m.ffill()
 dfvol1m = dfvol1m[dfvol1m.columns.drop('Year')]
+cols3 = dfvol1m.columns
+#cols.remove('fistcolumn')
+for col in cols3:
+    dfvol1m[col] = dfvol1m[col].astype(float)
 dfvol1m = (dfvol1m-dfvol1m.shift(-22))
 dfvol1m =dfvol1m.stack(level=0)
 dfvol1m = dfvol1m.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
@@ -189,8 +205,8 @@ dfvol1m.columns = ["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
 dfvol1m = dfvol1m.reset_index(level=1)
 dfvol1m = dfvol1m.reset_index(level=0)
 dfvol1m.columns = ["Date","Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.date
-dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.strftime('%d/%m/%y')
+#dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.date
+#dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback swap
 #dfswap1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -199,6 +215,10 @@ dfswap1m = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap1m = dfswap1m.tail(-1)
 dfswap1m= dfswap1m.ffill()
 dfswap1m = dfswap1m[dfswap1m.columns.drop('Year')]
+cols4 = dfswap1m.columns
+#cols.remove('fistcolumn')
+for col in cols4:
+    dfswap1m[col] = dfswap1m[col].astype(float)
 dfswap1m = (dfswap1m-dfswap1m.shift(-22))*100
 dfswap1m =dfswap1m.stack(level=0)
 dfswap1m = dfswap1m.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
@@ -213,8 +233,8 @@ dfswap1m = dfswap1m.drop(index='15y', level=1)
 dfswap1m = dfswap1m.reset_index(level=1)
 dfswap1m = dfswap1m.reset_index(level=0)
 dfswap1m.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.date
-dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.strftime('%d/%m/%y')
+#dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.date
+#dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback realised vol
 dfdswap1m = (dfdswap-dfdswap.shift(-22))
@@ -231,8 +251,8 @@ dfdswap1m = dfdswap1m.drop(index='15y', level=1)
 dfdswap1m = dfdswap1m.reset_index(level=1)
 dfdswap1m = dfdswap1m.reset_index(level=0)
 dfdswap1m.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
-dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
+#dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
+#dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #3m lookback vol
 #dfvol3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -241,6 +261,10 @@ dfvol3m = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol3m = dfvol3m.tail(-1)
 dfvol3m= dfvol3m.ffill()
 dfvol3m = dfvol3m[dfvol3m.columns.drop('Year')]
+cols5 = dfvol3m.columns
+#cols.remove('fistcolumn')
+for col in cols5:
+    dfvol3m[col] = dfvol3m[col].astype(float)
 dfvol3m = (dfvol3m-dfvol3m.shift(-66))
 dfvol3m =dfvol3m.stack(level=0)
 dfvol3m = dfvol3m.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])
@@ -265,6 +289,10 @@ dfswap3m = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap3m = dfswap3m.tail(-1)
 dfswap3m= dfswap3m.ffill()
 dfswap3m = dfswap3m[dfswap3m.columns.drop('Year')]
+cols6 = dfswap3m.columns
+#cols.remove('fistcolumn')
+for col in cols6:
+    dfswap3m[col] = dfswap3m[col].astype(float)
 dfswap3m = (dfswap3m-dfswap3m.shift(-66))*100
 dfswap3m =dfswap3m.stack(level=0)
 dfswap3m = dfswap3m.reindex(columns=["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"])

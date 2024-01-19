@@ -60,6 +60,10 @@ dfdswap1 = dfdswap.head(-66)
 index = dfdswap1.index
 dfdswap= dfdswap.ffill()
 dfdswap = dfdswap[dfdswap.columns.drop('Year')]
+cols7 = dfdswap.columns
+#cols.remove('fistcolumn')
+for col in cols7:
+    dfdswap[col] = dfdswap[col].astype(float)
 dfdswap = (dfdswap-dfdswap.shift(-1))*100
 dfdswap = (dfdswap.rolling(66).std())*(math.sqrt(252))
 dfdswap = dfdswap.dropna()
