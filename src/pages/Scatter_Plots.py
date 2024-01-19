@@ -100,7 +100,7 @@ def update_figure(vol1):
                     "hover_data": "Date"},)
 
 
-#dash.register_page(__name__)
+dash.register_page(__name__)
 layout = dbc.Container([
     dbc.Row([dbc.Col(dropdown4),
              dbc.Col(dropdown5),]),
