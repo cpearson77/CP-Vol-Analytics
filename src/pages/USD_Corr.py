@@ -291,8 +291,7 @@ def update_figure(pair, pair1, pair2, selected_year):
 
     figg = go.Figure(data=data, layout=layout)
     figg.update_layout(
-        font=dict(size=10),
-        xaxis = dict(autorange="reversed"))
+        font=dict(size=10))
     return figg
 
 
