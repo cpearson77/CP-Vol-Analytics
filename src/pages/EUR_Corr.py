@@ -99,6 +99,7 @@ dfcorr2= dfcorr2.reset_index(level=0)
 dfcorr2.columns = ["Date", "1s2s", "1s5s", "1s10s", "1s20s", "1s30s", "2s5s", "2s10s", "2s20s", "2s30s", "5s10s", "5s20s", "5s30s",
                   "10s20s", "10s30s", "20s30s"]
 dfcorr2=dfcorr2.round(2)
+dfcorr2['Date'] = pd.to_datetime(dfcorr2['Date'], format='%d/%m/%Y')
 dfyear = dfcorr2["Date"].dt.year
 dfcorr3 = pd.concat([dfcorr2, dfyear], axis=1)
 dfcorr3.columns = ["Date", "1s2s", "1s5s", "1s10s", "1s20s", "1s30s", "2s5s", "2s10s", "2s20s", "2s30s", "5s10s", "5s20s", "5s30s",
