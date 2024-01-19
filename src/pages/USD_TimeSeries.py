@@ -9,7 +9,7 @@ import math as math
 
 suppress_callback_exceptions=True
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
-url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/ufwdgrid1.csv?raw=true'
 dfswap = pd.read_csv(url,header=[0,1],index_col=0)
 dfswap.columns = dfswap.columns.map(''.join)
 dfswap = dfswap.tail(-1)
@@ -42,7 +42,7 @@ dfswap['Year'] = dfswap['Year'].astype('int64')
 dfswap["Year"]=dfswap["Year"].round(0)
 
 #dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
-url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/uvolgrid1.csv?raw=true'
 dfvol = pd.read_csv(url1,header=[0,1],index_col=0)
 dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
@@ -179,12 +179,12 @@ slide4 = html.Div([
         id='year-slider3'),
 ])
 
-graph1 = dcc.Graph(id='fig1',style={"height": 450, "width": 710})
-graph2 = dcc.Graph(id='fig2',style={"height": 450, "width": 710})
-graph3 = dcc.Graph(id='fig3',style={"height": 450, "width": 710})
-graph4 = dcc.Graph(id='fig4',style={"height": 450, "width": 710})
-graph5 = dcc.Graph(id='fig5',style={"height": 450, "width": 710})
-graph6 = dcc.Graph(id='fig6',style={"height": 450, "width": 710})
+graph1 = dcc.Graph(id='fig11',style={"height": 450, "width": 710})
+graph2 = dcc.Graph(id='fig12',style={"height": 450, "width": 710})
+graph3 = dcc.Graph(id='fig13',style={"height": 450, "width": 710})
+graph4 = dcc.Graph(id='fig14',style={"height": 450, "width": 710})
+graph5 = dcc.Graph(id='fig15',style={"height": 450, "width": 710})
+graph6 = dcc.Graph(id='fig16',style={"height": 450, "width": 710})
 
 dropdown = html.Div([
     html.P("Select Vol to plot:"),
@@ -293,7 +293,7 @@ dropdown6 = html.Div([
                     className="ag-theme-balham")
 ])
 
-@callback(Output("fig1", "figure"),
+@callback(Output("fig11", "figure"),
           Input("vol-dropdown3", "value"),Input('year-slider', 'value'))
 def update_figure(vol, selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -323,7 +323,7 @@ def update_figure(vol, selected_year):
         font=dict(size=10))
     return fig1
 
-@callback(Output("fig2", "figure"),
+@callback(Output("fig12", "figure"),
           Input("vol-dropdown4", "value"),Input('year-slider1', 'value'))
 def update_figure(vol, selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -353,7 +353,7 @@ def update_figure(vol, selected_year):
         font=dict(size=10))
     return fig1
 #callback for two input graph
-@callback(Output("fig3", "figure"),
+@callback(Output("fig13", "figure"),
           Input("vol-dropdown5", "value"),Input("vol-dropdown6", 'value'),
           Input('year-slider2', 'value'))
 def update_figure(vol, vol1, selected_year):
@@ -392,7 +392,7 @@ def update_figure(vol, vol1, selected_year):
         font=dict(size=10))
     return fig2
 #callback for diff graph
-@callback(Output("fig4", "figure"),
+@callback(Output("fig14", "figure"),
           Input("vol-dropdown5", "value"),Input("vol-dropdown6", 'value'),
           Input('year-slider2', 'value'))
 def update_figure(vol, vol1, selected_year):
@@ -420,7 +420,7 @@ def update_figure(vol, vol1, selected_year):
     return fig2
 
 #callback for three input fly graph
-@callback(Output("fig5", "figure"),
+@callback(Output("fig15", "figure"),
           Input("vol-dropdown7", "value"),Input("vol-dropdown8", 'value'),
           Input("vol-dropdown9", 'value'),Input('year-slider3', 'value'))
 def update_figure(vol, vol1, vol2, selected_year):
@@ -471,7 +471,7 @@ def update_figure(vol, vol1, vol2, selected_year):
         font=dict(size=10))
     return fig2
 #callback for fly diff graph
-@callback(Output("fig6", "figure"),
+@callback(Output("fig16", "figure"),
           Input("vol-dropdown7", "value"),Input("vol-dropdown8", 'value'),
           Input("vol-dropdown9", 'value'),Input('year-slider3', 'value'))
 def update_figure(vol, vol1, vol2, selected_year):
@@ -501,7 +501,7 @@ def update_figure(vol, vol1, vol2, selected_year):
 dash.register_page(__name__)
 
 layout = dbc.Container([
-    dbc.Row([dbc.Col(html.Div('EUR Historic Swap and Vol Data'))]),
+    dbc.Row([dbc.Col(html.Div('USD Historic Swap and Vol Data'))]),
     dbc.Row([dbc.Col(dropdown),
              dbc.Col(dropdown1)]),
     dbc.Row([dbc.Col(graph1),
