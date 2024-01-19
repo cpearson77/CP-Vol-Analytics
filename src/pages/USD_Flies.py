@@ -8,7 +8,7 @@ import pandas as pd
 
 
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdFly',header=[0],index_col=[0])
-url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fly1.csv?raw=true'
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/ufly1.csv?raw=true'
 dfswap = pd.read_csv(url,header=[0],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
@@ -23,7 +23,7 @@ dfswap['Year'] = dfswap['Year'].astype('int64')
 dfswap["Year"]=dfswap["Year"].round(0)
 
 #dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
-url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/uvolgrid1.csv?raw=true'
 dfvol = pd.read_csv(url1,header=[0,1],index_col=0)
 dfvol.columns = dfvol.columns.map(''.join)
 dfvol = dfvol.tail(-1)
@@ -50,31 +50,31 @@ dfvol['Date'] = pd.to_datetime(dfvol['Date'], format='%d/%m/%Y')
 dfvol['Year'] = dfvol['Year'].astype('int64')
 dfvol["Year"]=dfvol["Year"].round(0)
 
-flygraph = dcc.Graph(id='fly',style={"height": 350, "width": 400})
-fly1graph = dcc.Graph(id='fly1',style={"height": 350, "width": 400})
-fly2graph = dcc.Graph(id='fly2',style={"height": 350, "width": 400})
-fly3graph = dcc.Graph(id='fly3',style={"height": 350, "width": 400})
-fly4graph = dcc.Graph(id='fly4',style={"height": 350, "width": 400})
-fly5graph = dcc.Graph(id='fly5',style={"height": 350, "width": 400})
-fly6graph = dcc.Graph(id='fly6',style={"height": 350, "width": 400})
-fly7graph = dcc.Graph(id='fly7',style={"height": 350, "width": 400})
-fly8graph = dcc.Graph(id='fly8',style={"height": 350, "width": 400})
-fly9graph = dcc.Graph(id='fly9',style={"height": 350, "width": 400})
-fly10graph = dcc.Graph(id='fly10',style={"height": 350, "width": 400})
-fly11graph = dcc.Graph(id='fly11',style={"height": 350, "width": 400})
-fly12graph = dcc.Graph(id='fly12',style={"height": 350, "width": 400})
-fly13graph = dcc.Graph(id='fly13',style={"height": 350, "width": 400})
-fly14graph = dcc.Graph(id='fly14',style={"height": 350, "width": 400})
-fly15graph = dcc.Graph(id='fly15',style={"height": 350, "width": 400})
-fly16graph = dcc.Graph(id='fly16',style={"height": 350, "width": 400})
-fly17graph = dcc.Graph(id='fly17',style={"height": 350, "width": 400})
-fly18graph = dcc.Graph(id='fly18',style={"height": 350, "width": 400})
-fly19graph = dcc.Graph(id='fly19',style={"height": 350, "width": 400})
-fly20graph = dcc.Graph(id='fly20',style={"height": 350, "width": 400})
-fly21graph = dcc.Graph(id='fly21',style={"height": 350, "width": 400})
-fly22graph = dcc.Graph(id='fly22',style={"height": 350, "width": 400})
-fly23graph = dcc.Graph(id='fly23',style={"height": 350, "width": 400})
-fly24graph = dcc.Graph(id='fly24',style={"height": 350, "width": 400})
+flygraph = dcc.Graph(id='fly40',style={"height": 350, "width": 400})
+fly1graph = dcc.Graph(id='fly41',style={"height": 350, "width": 400})
+fly2graph = dcc.Graph(id='fly42',style={"height": 350, "width": 400})
+fly3graph = dcc.Graph(id='fly43',style={"height": 350, "width": 400})
+fly4graph = dcc.Graph(id='fly44',style={"height": 350, "width": 400})
+fly5graph = dcc.Graph(id='fly45',style={"height": 350, "width": 400})
+fly6graph = dcc.Graph(id='fly46',style={"height": 350, "width": 400})
+fly7graph = dcc.Graph(id='fly47',style={"height": 350, "width": 400})
+fly8graph = dcc.Graph(id='fly48',style={"height": 350, "width": 400})
+fly9graph = dcc.Graph(id='fly49',style={"height": 350, "width": 400})
+fly10graph = dcc.Graph(id='fly410',style={"height": 350, "width": 400})
+fly11graph = dcc.Graph(id='fly411',style={"height": 350, "width": 400})
+fly12graph = dcc.Graph(id='fly412',style={"height": 350, "width": 400})
+fly13graph = dcc.Graph(id='fly413',style={"height": 350, "width": 400})
+fly14graph = dcc.Graph(id='fly414',style={"height": 350, "width": 400})
+fly15graph = dcc.Graph(id='fly415',style={"height": 350, "width": 400})
+fly16graph = dcc.Graph(id='fly416',style={"height": 350, "width": 400})
+fly17graph = dcc.Graph(id='fly417',style={"height": 350, "width": 400})
+fly18graph = dcc.Graph(id='fly418',style={"height": 350, "width": 400})
+fly19graph = dcc.Graph(id='fly419',style={"height": 350, "width": 400})
+fly20graph = dcc.Graph(id='fly420',style={"height": 350, "width": 400})
+fly21graph = dcc.Graph(id='fly421',style={"height": 350, "width": 400})
+fly22graph = dcc.Graph(id='fly422',style={"height": 350, "width": 400})
+fly23graph = dcc.Graph(id='fly423',style={"height": 350, "width": 400})
+fly24graph = dcc.Graph(id='fly424',style={"height": 350, "width": 400})
 
 slide1 = html.Div([
     html.P("Select Lookback:"),
@@ -87,7 +87,7 @@ slide1 = html.Div([
         id='year-slider'),
 ])
 
-@callback(Output("fly", "figure"),
+@callback(Output("fly40", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -101,7 +101,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly1", "figure"),
+@callback(Output("fly41", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -115,7 +115,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly2", "figure"),
+@callback(Output("fly42", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -129,7 +129,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly3", "figure"),
+@callback(Output("fly43", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -143,7 +143,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly4", "figure"),
+@callback(Output("fly44", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -157,7 +157,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly5", "figure"),
+@callback(Output("fly45", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -171,7 +171,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly6", "figure"),
+@callback(Output("fly46", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -185,7 +185,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly7", "figure"),
+@callback(Output("fly47", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -199,7 +199,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly8", "figure"),
+@callback(Output("fly48", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -213,7 +213,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly9", "figure"),
+@callback(Output("fly49", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -227,7 +227,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly10", "figure"),
+@callback(Output("fly410", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -241,7 +241,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly11", "figure"),
+@callback(Output("fly411", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -255,7 +255,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly12", "figure"),
+@callback(Output("fly412", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfswap[dfswap.Year >= selected_year]
@@ -269,7 +269,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly13", "figure"),
+@callback(Output("fly413", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -283,7 +283,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly14", "figure"),
+@callback(Output("fly414", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -297,7 +297,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly15", "figure"),
+@callback(Output("fly415", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -311,7 +311,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly16", "figure"),
+@callback(Output("fly416", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -325,7 +325,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly17", "figure"),
+@callback(Output("fly417", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -339,7 +339,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly18", "figure"),
+@callback(Output("fly418", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -353,7 +353,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly19", "figure"),
+@callback(Output("fly419", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -367,7 +367,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly20", "figure"),
+@callback(Output("fly420", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -381,7 +381,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly21", "figure"),
+@callback(Output("fly421", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -395,7 +395,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly22", "figure"),
+@callback(Output("fly422", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -409,7 +409,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly23", "figure"),
+@callback(Output("fly423", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -423,7 +423,7 @@ def update_figure(selected_year):
         margin=dict(l=5, r=5, t=20, b=20))
     return fly
 
-@callback(Output("fly24", "figure"),
+@callback(Output("fly424", "figure"),
           Input('year-slider', 'value'))
 def update_figure(selected_year):
     dffilt = dfvol[dfvol.Year >= selected_year]
@@ -439,7 +439,7 @@ def update_figure(selected_year):
 
 dash.register_page(__name__)
 layout = dbc.Container([
-         dbc.Row([dbc.Col(html.H1('EUR Vol & Swap Flies'))]),
+         dbc.Row([dbc.Col(html.H1('USD Vol & Swap Flies'))]),
          dbc.Row([dbc.Col(slide1)]),
          dbc.Row([dbc.Col(fly13graph),
                   dbc.Col(fly14graph),
@@ -468,4 +468,3 @@ layout = dbc.Container([
          dbc.Row([dbc.Col(fly7graph),
                   ])
 ],fluid=True)
-

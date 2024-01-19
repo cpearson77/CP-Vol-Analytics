@@ -13,7 +13,7 @@ dash.register_page(__name__)
 #grid of corr 22d lookback
 #index adjusted by 6 x (no of days -1)
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='Swaps',header=[0],index_col=[0])
-url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/swap1.csv?raw=true'
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/uswap1.csv?raw=true'
 dfswap = pd.read_csv(url,header=[0],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap.index.rename('Date', inplace=True)
@@ -192,7 +192,7 @@ grid2 = dag.AgGrid(
     className="ag-theme-balham"
 )
 
-graph = dcc.Graph(id='fig',style={"height": 500, "width": 1300})
+graph = dcc.Graph(id='figg',style={"height": 500, "width": 1300})
 
 dropdown = html.Div([
     html.P("Select Swap Correlation to plot:"),
@@ -241,7 +241,7 @@ slide = html.Div([
         id='year-slider'),
 ])
 
-@callback(Output("fig", "figure"),
+@callback(Output("figg", "figure"),
           Input("swap-dropdown", "value"),Input("swap-dropdown1", "value"),
           Input("swap-dropdown2", "value"),Input('year-slider', 'value'))
 def update_figure(pair, pair1, pair2, selected_year):
@@ -289,15 +289,15 @@ def update_figure(pair, pair1, pair2, selected_year):
                                    overlaying='y',
                                    side='right'))
 
-    fig = go.Figure(data=data, layout=layout)
-    fig.update_layout(
+    figg = go.Figure(data=data, layout=layout)
+    figg.update_layout(
         font=dict(size=10),
         xaxis = dict(autorange="reversed"))
-    return fig
+    return figg
 
 
 layout = dbc.Container([
-         dbc.Row([dbc.Col(html.H1('EUR Correlation'))]),
+         dbc.Row([dbc.Col(html.H1('USD Correlation'))]),
          dbc.Row([dbc.Col(html.P("1m correlation lookback")),
                   dbc.Col(html.P("3m correlation lookback")),
                   dbc.Col(html.P("6m correlation lookback"))]),

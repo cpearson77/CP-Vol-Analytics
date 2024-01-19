@@ -10,11 +10,11 @@ from scipy import stats
 import math as math
 
 suppress_callback_exceptions=True
-dash.register_page(__name__, path='/')
+dash.register_page(__name__)
 
 #implied vol
 #dfvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
-url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
+url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/uvolgrid1.csv?raw=true'
 dfvol = pd.read_csv(url,header=[0,1],index_col=0)
 dfvol = dfvol.tail(-1)
 dfvol= dfvol.ffill()
@@ -70,7 +70,7 @@ dfzs.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y",
 
 #swaps
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
-url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fwdgrid1.csv?raw=true'
+url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/ufwdgrid1.csv?raw=true'
 dfswap = pd.read_csv(url1,header=[0,1],index_col=0)
 dfswap = dfswap.tail(-1)
 dfswap= dfswap.ffill()
@@ -352,15 +352,15 @@ dropdown1 = html.Div([
                     className="ag-theme-balham")
 ])
 
-surf1graph = dcc.Graph(id='surf1y',style={"height": 400, "width": 690, "font-size": '10px'})
-surf2graph = dcc.Graph(id='surf10y', style={"height": 400, "width": 690, "font-size": '10px'})
+surf1graph = dcc.Graph(id='surf2y',style={"height": 400, "width": 690, "font-size": '10px'})
+surf2graph = dcc.Graph(id='surf20y', style={"height": 400, "width": 690, "font-size": '10px'})
 
 
-@callback(Output("surf1y", "figure"), Input("tail-dropdown", "value"))
+@callback(Output("surf2y", "figure"), Input("tail-dropdown", "value"))
 def update_figure(tail):
     return px.line(dfsurf4, x="Expiry", y=tail, color='Date')
 
-@callback(Output("surf10y", "figure"), Input("tail-dropdown1", "value"))
+@callback(Output("surf20y", "figure"), Input("tail-dropdown1", "value"))
 def update_figure(tail):
     return px.line(dfsurf4, x="Expiry", y=tail, color='Date')
 
@@ -632,8 +632,8 @@ grid12 = dag.AgGrid(
     className="ag-theme-balham"
 )
 
-layout = dbc.Container([
-    dbc.Row([dbc.Col(html.H1('EUR Vol Surface'))]),
+layout = (dbc.Container([
+    dbc.Row([dbc.Col(html.H1('USD Vol Surface'))]),
     dbc.Row([dbc.Col(html.Div('Implied Vol')),
              dbc.Col(html.Div('Fwd Rates')),
              dbc.Col(html.Div('3m Implied Vol Z-score'))]),
@@ -661,4 +661,4 @@ layout = dbc.Container([
              dbc.Col(html.Div('Daily Realised Vol (3m lookback) - 3m Change'))]),
     dbc.Row([dbc.Col(grid10),
             dbc.Col(grid11),
-            dbc.Col(grid12)]),],fluid=True)
+            dbc.Col(grid12)]),],fluid=True))
