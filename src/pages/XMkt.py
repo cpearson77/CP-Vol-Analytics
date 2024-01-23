@@ -11,7 +11,7 @@ import math as math
 import plotly.graph_objects as go
 
 suppress_callback_exceptions=True
-dash.register_page(__name__)
+
 
 
 url1 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/volgrid1.csv?raw=true'
@@ -717,6 +717,7 @@ def update_figure(vol,vol1, selected_year):
         font=dict(size=10))
     return xmkt3
 
+dash.register_page(__name__)
 layout = dbc.Container([
     dbc.Row([dbc.Col(html.Div('USD - EUR Implied Vol')),
              dbc.Col(html.Div('USD - EUR Fwd Rates')),
