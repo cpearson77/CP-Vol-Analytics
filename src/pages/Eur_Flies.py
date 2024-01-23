@@ -95,7 +95,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="1y 1y1y 2y1y Fwd fly")
+                  title="1y 1y1y 2y1y Fwd fly",color_discrete_sequence=["pink"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -109,7 +109,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="1y1y 2y1y 3y1y Fwd fly")
+                  title="1y1y 2y1y 3y1y Fwd fly",color_discrete_sequence=["orange"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -123,7 +123,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="2y1y 3y1y 4y1y Fwd fly")
+                  title="2y1y 3y1y 4y1y Fwd fly",color_discrete_sequence=["blue"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -137,7 +137,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="3y1y 4y1y 5y1y Fwd fly")
+                  title="3y1y 4y1y 5y1y Fwd fly",color_discrete_sequence=["green"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -151,7 +151,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="4y1y 5y1y 6y1y Fwd fly")
+                  title="4y1y 5y1y 6y1y Fwd fly",color_discrete_sequence=["red"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -165,7 +165,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="5y1y 6y1y 7y1y Fwd fly")
+                  title="5y1y 6y1y 7y1y Fwd fly",color_discrete_sequence=["purple"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -179,7 +179,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="6y1y 7y1y 8y1y Fwd fly")
+                  title="6y1y 7y1y 8y1y Fwd fly",color_discrete_sequence=["yellow"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -193,7 +193,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="7y1y 8y1y 9y1y Fwd fly")
+                  title="7y1y 8y1y 9y1y Fwd fly",color_discrete_sequence=["black"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -207,7 +207,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="5y 5y5y 10y5y Fwd fly")
+                  title="5y 5y5y 10y5y Fwd fly",color_discrete_sequence=["grey"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -221,7 +221,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="5y5y 10y5y 15y5y Fwd fly")
+                  title="5y5y 10y5y 15y5y Fwd fly",color_discrete_sequence=["gold"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -235,7 +235,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="10y5y 15y5y 20y5y Fwd fly")
+                  title="10y5y 15y5y 20y5y Fwd fly",color_discrete_sequence=["red"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -249,7 +249,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="15y5y 20y5y 25y5y Fwd fly")
+                  title="15y5y 20y5y 25y5y Fwd fly",color_discrete_sequence=["orange"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -263,7 +263,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Fwd"},
-                  title="20y5y 25y5y 30y5y Fwd fly")
+                  title="20y5y 25y5y 30y5y Fwd fly",color_discrete_sequence=["purple"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -277,7 +277,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="1y2y 1y5y 1y10y Vol fly")
+                  title="1y2y 1y5y 1y10y Vol fly",color_discrete_sequence=["green"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -291,7 +291,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="1y5y 1y10y 1y30y Vol fly")
+                  title="1y5y 1y10y 1y30y Vol fly",color_discrete_sequence=["blue"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -305,7 +305,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="1y10y 1y20y 1y30y Vol fly")
+                  title="1y10y 1y20y 1y30y Vol fly",color_discrete_sequence=["red"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -319,7 +319,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="2y2y 2y5y 2y10y Vol fly")
+                  title="2y2y 2y5y 2y10y Vol fly",color_discrete_sequence=["gold"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -333,7 +333,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="2y5y 2y10y 2y30y Vol fly")
+                  title="2y5y 2y10y 2y30y Vol fly",color_discrete_sequence=["yellow"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -347,7 +347,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="2y10y 2y20y 2y30y Vol fly")
+                  title="2y10y 2y20y 2y30y Vol fly",color_discrete_sequence=["grey"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -361,7 +361,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="5y2y 5y5y 5y10y Vol fly")
+                  title="5y2y 5y5y 5y10y Vol fly",color_discrete_sequence=["pink"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -375,7 +375,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="5y5y 5y10y 5y30y Vol fly")
+                  title="5y5y 5y10y 5y30y Vol fly",color_discrete_sequence=["orange"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -389,7 +389,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="5y10y 5y20y 5y30y Vol fly")
+                  title="5y10y 5y20y 5y30y Vol fly",color_discrete_sequence=["green"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -403,7 +403,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="10y2y 10y5y 10y10y Vol fly")
+                  title="10y2y 10y5y 10y10y Vol fly",color_discrete_sequence=["purple"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -417,7 +417,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="10y5y 10y10y 10y30y Vol fly")
+                  title="10y5y 10y10y 10y30y Vol fly",color_discrete_sequence=["blue"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
@@ -431,7 +431,7 @@ def update_figure(selected_year):
                   labels={
                       "x": "Date",
                       "y": "Vol"},
-                  title="10y10y 10y20y 10y30y Vol fly")
+                  title="10y10y 10y20y 10y30y Vol fly",color_discrete_sequence=["yellow"])
     fly.update_layout(
         font=dict(size=10),
         margin=dict(l=5, r=5, t=20, b=20))
