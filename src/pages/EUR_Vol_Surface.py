@@ -37,8 +37,8 @@ dfvol.columns = ["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
 dfvol3 = dfvol.reset_index(level=1)
 dfvol3 = dfvol3.reset_index(level=0)
 dfvol3.columns = ["Date","Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-#dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.date
-#dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.strftime('%d/%m/%y')
+dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.date
+dfvol3['Date'] = pd.to_datetime(dfvol3['Date']).dt.strftime('%d/%m/%y')
 
 #implied vol zscore
 #dfzs = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -65,8 +65,8 @@ dfzs = dfzs.drop(index='15y', level=1)
 dfzs = dfzs.reset_index(level=1)
 dfzs = dfzs.reset_index(level=0)
 dfzs.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-#dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.date
-#dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.strftime('%d/%m/%y')
+dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.date
+dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.strftime('%d/%m/%y')
 
 #swaps
 #dfswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -88,8 +88,8 @@ dfswap = dfswap.drop(index='15y', level=1)
 dfswap = dfswap.reset_index(level=1)
 dfswap = dfswap.reset_index(level=0)
 dfswap.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.date
-#dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.strftime('%d/%m/%y')
+dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.date
+dfswap['Date'] = pd.to_datetime(dfswap['Date']).dt.strftime('%d/%m/%y')
 
 #daily implied vol
 #dfdvol = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -115,8 +115,8 @@ dfdvol2 = dfdvol2.drop(index='15y', level=1)
 dfdvol2 = dfdvol2.reset_index(level=1)
 dfdvol2 = dfdvol2.reset_index(level=0)
 dfdvol2.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-#dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.date
-#dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.strftime('%d/%m/%y')
+dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.date
+dfdvol2['Date'] = pd.to_datetime(dfdvol2['Date']).dt.strftime('%d/%m/%y')
 
 #realised swap vol
 #dfdswap = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -150,11 +150,17 @@ dfdswap2 = dfdswap2.drop(index='15y', level=1)
 dfdswap2 = dfdswap2.reset_index(level=1)
 dfdswap2 = dfdswap2.reset_index(level=0)
 dfdswap2.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.date
-#dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.strftime('%d/%m/%y')
+dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.date
+dfdswap2['Date'] = pd.to_datetime(dfdswap2['Date']).dt.strftime('%d/%m/%y')
 
 #impliedrealisedratio
 dfdvol1 = dfdvol.head(-66)
+dfdswap = dfdswap.reset_index(level=0)
+dfdswap['Date1'] = pd.to_datetime(dfdswap['Date1'], format='%d/%m/%Y')
+dfdvol1 = dfdvol1.reset_index(level=0)
+dfdvol1['index'] = pd.to_datetime(dfdvol1['index'], format='%d/%m/%Y')
+dfdswap = dfdswap.set_index('Date1')
+dfdvol1 = dfdvol1.set_index('index')
 dfrat = dfdswap.div(dfdvol1)
 dfrat=dfrat.sort_index(ascending=False)
 dfrat =dfrat.stack(level=0)
@@ -170,8 +176,8 @@ dfrat = dfrat.drop(index='15y', level=1)
 dfrat = dfrat.reset_index(level=1)
 dfrat = dfrat.reset_index(level=0)
 dfrat.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.date
-#dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.strftime('%d/%m/%y')
+dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.date
+dfrat['Date'] = pd.to_datetime(dfrat['Date']).dt.strftime('%d/%m/%y')
 
 #volsurface line graphs
 dfsurf1 = dfvol.head(8)
@@ -181,8 +187,59 @@ dfsurf4 = pd.concat([dfsurf1, dfsurf2, dfsurf3])
 dfsurf4 = dfsurf4.reset_index(level=1)
 dfsurf4 = dfsurf4.reset_index(level=0)
 dfsurf4.columns = ["Date", "Expiry", "1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-#dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.date
-#dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.strftime('%d/%m/%y')
+dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.date
+dfsurf4['Date'] = pd.to_datetime(dfsurf4['Date']).dt.strftime('%d/%m/%y')
+
+dfcsurf1 = dfswap.head(1)
+dfcsurf2 = dfswap[8:9]
+dfcsurf3 = dfswap[40:41]
+dfcsurf4 = pd.concat([dfcsurf1, dfcsurf2, dfcsurf3])
+dfcsurf4 = dfcsurf4.reset_index(level=0)
+dfcsurf4 = dfcsurf4[dfcsurf4.columns.drop('index')]
+#dfcsurf4 = dfcsurf4[dfcsurf4.columns.drop('Year')]
+#dfcsurf4['Date'] = pd.to_datetime(dfcsurf4['Date'], format='%d/%m/%Y')
+#dfcsurf4['Date'] = pd.to_datetime(dfcsurf4['Date'], format='%d/%m/%Y')
+dfcsurf5 = dfcsurf4.transpose()
+header = ("Today", "1 week ago", "1 month ago")
+dfcsurf5.columns = header
+dfcsurf6 = dfcsurf5.tail(-1)
+dfcsurf6 = dfcsurf6.tail(-1)
+dfcsurf7 = dfcsurf6.head(9)
+cols = dfcsurf7.columns
+#cols.remove('fistcolumn')
+for col in cols:
+    dfcsurf7[col] = dfcsurf7[col].astype(float)
+
+
+url7 = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/fly1.csv?raw=true'
+dffswap = pd.read_csv(url7,header=[0],index_col=0)
+dffswap = dffswap.tail(-1)
+dffswap= dffswap.ffill()
+cols = dffswap.columns
+#cols.remove('fistcolumn')
+for col in cols:
+    dffswap[col] = dffswap[col].astype(float)
+dffswap.index.rename('Date', inplace=True)
+dffswap = dffswap.reset_index(level=0)
+dffswap['Date'] = pd.to_datetime(dffswap['Date'], format='%d/%m/%Y')
+dffswap['Year'] = dffswap['Year'].astype('int64')
+dffswap["Year"]=dffswap["Year"].round(0)
+dffswap = dffswap[dffswap.columns.drop('Year')]
+dffswap = dffswap[dffswap.columns.drop('5y')]
+dffswap = dffswap[dffswap.columns.drop('5y5y')]
+dffsurf1 = dffswap.head(1)
+dffsurf2 = dffswap[5:6]
+dffsurf3 = dffswap[22:23]
+dffsurf4 = pd.concat([dffsurf1, dffsurf2, dffsurf3])
+dffsurf4 = dffsurf4.reset_index(level=0)
+dffsurf4 = dffsurf4[dffsurf4.columns.drop('index')]
+dffsurf4['Date'] = pd.to_datetime(dffsurf4['Date'], format='%d/%m/%Y')
+dffsurf4['Date'] = pd.to_datetime(dffsurf4['Date'], format='%d/%m/%Y')
+dffsurf5 = dffsurf4.transpose()
+header = ("Today", "1 week ago", "1 month ago")
+dffsurf5.columns = header
+dffsurf6 = dffsurf5.tail(-1)
+dffsurf6
 
 #1m lookback vol
 #dfvol1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -209,8 +266,8 @@ dfvol1m.columns = ["1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
 dfvol1m = dfvol1m.reset_index(level=1)
 dfvol1m = dfvol1m.reset_index(level=0)
 dfvol1m.columns = ["Date","Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
-#dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.date
-#dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.strftime('%d/%m/%y')
+dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.date
+dfvol1m['Date'] = pd.to_datetime(dfvol1m['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback swap
 #dfswap1m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='FwdGrid',header=[0,1],index_col=[0])
@@ -237,8 +294,8 @@ dfswap1m = dfswap1m.drop(index='15y', level=1)
 dfswap1m = dfswap1m.reset_index(level=1)
 dfswap1m = dfswap1m.reset_index(level=0)
 dfswap1m.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.date
-#dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.strftime('%d/%m/%y')
+dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.date
+dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback realised vol
 dfdswap1m = (dfdswap-dfdswap.shift(-22))
@@ -255,8 +312,8 @@ dfdswap1m = dfdswap1m.drop(index='15y', level=1)
 dfdswap1m = dfdswap1m.reset_index(level=1)
 dfdswap1m = dfdswap1m.reset_index(level=0)
 dfdswap1m.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
-#dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
+dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
+dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #3m lookback vol
 #dfvol3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
@@ -352,17 +409,55 @@ dropdown1 = html.Div([
                     className="ag-theme-balham")
 ])
 
+dropdown2 = html.Div([
+    html.P("Select Spot or Fwd Curve"),
+    dcc.Dropdown(
+                    id="tail-dropdown2",
+                    clearable=False,
+                    value="Fwd",
+                    options=["Spot", "Fwd"],
+                    className="ag-theme-balham",
+                    style={"height": 38, "width": 690})
+])
+
 surf1graph = dcc.Graph(id='surf1y',style={"height": 400, "width": 690, "font-size": '10px'})
 surf2graph = dcc.Graph(id='surf10y', style={"height": 400, "width": 690, "font-size": '10px'})
+surf3graph = dcc.Graph(id='curve', style={"height": 400, "width": 690, "font-size": '10px'})
 
 
 @callback(Output("surf1y", "figure"), Input("tail-dropdown", "value"))
 def update_figure(tail):
-    return px.line(dfsurf4, x="Expiry", y=tail, color='Date')
+    fig2 = px.line(dfsurf4, x="Expiry", y=tail, color='Date')
+    fig2.update_layout(
+            font=dict(size=10))
+    return fig2
 
 @callback(Output("surf10y", "figure"), Input("tail-dropdown1", "value"))
 def update_figure(tail):
-    return px.line(dfsurf4, x="Expiry", y=tail, color='Date')
+    fig1 = px.line(dfsurf4, x="Expiry", y=tail, color='Date')
+    fig1.update_layout(
+        font=dict(size=10))
+    return fig1
+
+@callback(Output("curve", "figure"), Input("tail-dropdown2", "value"))
+def update_figure(curve):
+    if curve == "Spot":
+        fig = px.line(dfcsurf7,labels={
+                      "index": "Swap",
+                      "value": "Swap Rate",
+                      "variable": "Date"})
+        fig.update_layout(
+            font=dict(size=10))
+        return fig
+    else:
+        fig = px.line(dffsurf6, labels={
+            "index": "Swap",
+            "value": "Swap Rate",
+            "variable": "Date"})
+        fig.update_layout(
+            font=dict(size=10))
+        return fig
+
 
 columnDefs = [
     {"field": "Date","minWidth": 65},
@@ -661,4 +756,7 @@ layout = dbc.Container([
              dbc.Col(html.Div('Daily Realised Vol (3m lookback) - 3m Change'))]),
     dbc.Row([dbc.Col(grid10),
             dbc.Col(grid11),
-            dbc.Col(grid12)]),],fluid=True)
+            dbc.Col(grid12)]),
+    dbc.Row([dbc.Col(dropdown2)]),
+    dbc.Row([dbc.Col(surf3graph)]),
+],fluid=True)

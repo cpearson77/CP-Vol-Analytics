@@ -18,7 +18,7 @@ cols = dfswap.columns
 #cols.remove('fistcolumn')
 for col in cols:
     dfswap[col] = dfswap[col].astype(float)
-dfswap=dfswap.round(2)
+dfswap=dfswap.round(4)
 dfswap.columns = ["1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y", "1m20y", "1m30y","3m1y", "3m2y",
                           "3m3y", "3m5y", "3m7y", "3m10y", "3m15y", "3m20y", "3m30y", "6m1y", "6m2y", "6m3y", "6m5y",
                           "6m7y", "6m10y", "6m15y", "6m20y", "6m30y","9m1y", "9m2y", "9m3y", "9m5y",
@@ -67,7 +67,7 @@ dfvol.columns = ["Date","1m1y", "1m2y", "1m3y", "1m5y", "1m7y", "1m10y", "1m15y"
                           "20y7y", "20y10y", "20y15y", "20y20y", "20y30y"]
 dfvol['Date'] = pd.to_datetime(dfvol['Date'], format='%d/%m/%Y')
 dfvol = dfvol.set_index('Date')
-dfvol=dfvol.round(0)
+dfvol=dfvol.round(1)
 dfvol1 = dfvol.head(-66)
 
 #for realised vol
@@ -319,8 +319,10 @@ def update_figure(vol, selected_year):
                                    overlaying='y',
                                    side='right'))
     fig1 = go.Figure(data=data, layout=layout)
+    #fig1.update_traces(mode="markers+lines", hovertemplate=None)
     fig1.update_layout(
-        font=dict(size=10))
+        font=dict(size=10)
+    )
     return fig1
 
 @callback(Output("fig2", "figure"),

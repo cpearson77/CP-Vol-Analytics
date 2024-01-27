@@ -421,6 +421,8 @@ dfzs = dfzs.drop(index='15y', level=1)
 dfzs = dfzs.reset_index(level=1)
 dfzs = dfzs.reset_index(level=0)
 dfzs.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "15y", "20y", "30y"]
+dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.date
+dfzs['Date'] = pd.to_datetime(dfzs['Date']).dt.strftime('%d/%m/%y')
 
 #translating into grid format for fwds
 dfdifff3 = dfdifff2.set_index('Date')
@@ -526,7 +528,7 @@ dropdown = html.Div([
     dcc.Dropdown(
                     id="vol-dropdown1",
                     clearable=False,
-                    value="1y5y",
+                    value="1y10y",
                     options=["1y1y", "1y2y", "1y5y", "1y10y","1y20y", "1y30y","2y1y", "2y2y", "2y5y",
                           "2y10y", "2y20y", "2y30y","3y1y", "3y2y", "3y5y",
                           "3y10y", "3y20y", "3y30y","5y1y", "5y2y", "5y5y", "5y10y", "5y20y", "5y30y",
@@ -542,7 +544,7 @@ dropdown1 = html.Div([
     dcc.Dropdown(
                     id="vol-dropdown2",
                     clearable=False,
-                    value="1y10y",
+                    value="1y1y",
                     options=["1y1y", "1y2y", "1y5y", "1y10y","1y20y", "1y30y","2y1y", "2y2y", "2y5y",
                           "2y10y", "2y20y", "2y30y","3y1y", "3y2y", "3y5y",
                           "3y10y", "3y20y", "3y30y","5y1y", "5y2y", "5y5y", "5y10y", "5y20y", "5y30y",
@@ -567,6 +569,7 @@ slide1 = html.Div([
 graph = dcc.Graph(id='xmkt1',style={"height": 450, "width": 700})
 graph1 = dcc.Graph(id='xmkt2',style={"height": 450, "width": 700})
 graph2 = dcc.Graph(id='xmkt3',style={"height": 550, "width": 1400})
+graph3 = dcc.Graph(id='xmkt4',style={"height": 550, "width": 1400})
 @callback(Output("xmkt1", "figure"),
           Input("vol-dropdown1", "value"),Input('year-slider', 'value'))
 def update_figure(vol, selected_year):
@@ -677,7 +680,7 @@ def update_figure(vol,vol1, selected_year):
                         yaxis='y1')
     trace2 = go.Scatter(x=dffilt['Date'],
                         y=dffilt[vol1],
-                        name='USD - EUR '+vol+' Implied Vol',
+                        name='USD - EUR '+vol1+' Implied Vol',
                         yaxis='y1')
     trace3 = go.Scatter(x=dffilt['Date'],
                         y=dffilt[vol]-dffilt[vol1],
@@ -717,6 +720,56 @@ def update_figure(vol,vol1, selected_year):
         font=dict(size=10))
     return xmkt3
 
+@callback(Output("xmkt4", "figure"),Input("vol-dropdown1", "value"),
+          Input("vol-dropdown2", "value"),Input('year-slider', 'value'))
+def update_figure(vol,vol1, selected_year):
+    dffilt = dfdiff2[dfdiff2.Year >= selected_year]
+    trace1 = go.Scatter(x=dffilt['Date'],
+                        y=dfvol[vol]-dfvol[vol1],
+                        name=vol+'-'+vol1+ ' EUR Implied Vol',
+                        yaxis='y1')
+    trace2 = go.Scatter(x=dffilt['Date'],
+                        y=dfuvol[vol]- dfuvol[vol1],
+                        name=vol+'-'+vol1+ ' USD Implied Vol',
+                        yaxis='y1')
+    trace3 = go.Scatter(x=dffilt['Date'],
+                        y=dffilt[vol]-dffilt[vol1],
+                        name=vol+'-'+vol1+ ' Xmkt Vol Spread',
+                        yaxis='y1')
+    trace4 = go.Scatter(x=dffilt['Date'],
+                        y=dffwd[vol]-dffwd[vol1],
+                        name= vol+'-'+vol1+ ' EUR Fwd',
+                        yaxis='y2')
+    trace5 = go.Scatter(x=dffilt['Date'],
+                        y=dfufwd[vol] - dfufwd[vol1],
+                        name=vol + '-' + vol1 + ' USD Fwd',
+                        yaxis='y2')
+    trace6 = go.Scatter(x=dffilt['Date'],
+                        y=dfdifff2[vol]-dfdifff2[vol1],
+                        name=vol+'-'+vol1+' Xmkt Fwd Spread',
+                        yaxis='y2')
+    trace7 = go.Scatter(x=dffilt['Date'],
+                        y=dfdswap[vol] - dfdswap[vol1],
+                        name=vol + '-' + vol1 + ' EUR Realised Vol',
+                        yaxis='y1')
+    trace8 = go.Scatter(x=dffilt['Date'],
+                        y=dfudswap[vol] - dfudswap[vol1],
+                        name=vol + '-' + vol1 + ' USD Realised Vol',
+                        yaxis='y1')
+    trace9 = go.Scatter(x=dffilt['Date'],
+                        y=dfrdifff2[vol]-dfrdifff2[vol1],
+                        name= vol+'-'+vol1+' Xmkt Realised Vol Spread',
+                        yaxis='y1')
+    data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8, trace9]
+    layout = go.Layout(yaxis=dict(title='Vol'),
+                       yaxis2=dict(title='Fwd',
+                                   overlaying='y',
+                                   side='right'))
+    xmkt4 = go.Figure(data=data, layout=layout)
+    xmkt4.update_layout(
+        font=dict(size=10))
+    return xmkt4
+
 dash.register_page(__name__)
 layout = dbc.Container([
     dbc.Row([dbc.Col(html.Div('USD - EUR Implied Vol')),
@@ -730,6 +783,6 @@ layout = dbc.Container([
     dbc.Row([dbc.Col(graph),
              dbc.Col(graph1)]),
     dbc.Row([dbc.Col(slide1),]),
-    dbc.Row([dbc.Col(graph2),
-             ]),
+    dbc.Row([dbc.Col(graph2),]),
+    dbc.Row([dbc.Col(graph3),]),
 ], fluid=True)

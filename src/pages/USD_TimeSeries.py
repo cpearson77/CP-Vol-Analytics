@@ -13,6 +13,7 @@ url = 'https://github.com/cpearson77/CP-Vol-Analytics/blob/main/ufwdgrid1.csv?ra
 dfswap = pd.read_csv(url,header=[0,1],index_col=0)
 dfswap.columns = dfswap.columns.map(''.join)
 dfswap = dfswap.tail(-1)
+dfswap = dfswap.head(1200)
 dfswap= dfswap.ffill()
 cols = dfswap.columns
 #cols.remove('fistcolumn')

@@ -54,8 +54,8 @@ dfswap7= dfswap7.set_index('Date')
 dfswap7=dfswap7.reset_index(level =0)
 dfswap7.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap7=dfswap7.round(2)
-#dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.date
-#dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.strftime('%d/%m/%y')
+dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.date
+dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.strftime('%d/%m/%y')
 
 #grid of corr 132d lookback
 dfswap8 = dfswap1.rolling(132).corr()
@@ -70,8 +70,8 @@ dfswap10= dfswap10.set_index('Date')
 dfswap10=dfswap10.reset_index(level =0)
 dfswap10.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap10=dfswap10.round(2)
-#dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.date
-#dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.strftime('%d/%m/%y')
+dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.date
+dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.strftime('%d/%m/%y')
 
 #df for graphs 3m lookback
 dfc1 = dfswap1["1y"].rolling(66).corr(dfswap1["2y"])
@@ -216,8 +216,8 @@ dfvol4.columns = ["Date","Vol", "1m2y", "1m5y", "1m10y","1m30y", "3m2y","3m5y","
                           "7y10y", "7y30y", "10y2y", "10y5y", "10y10y", "10y30y", "15y2y", "15y5y",
                            "15y10y", "15y30y", "20y2y", "20y5y", "20y10y", "20y30y"]
 dfvol4=dfvol4.round(2)
-dfvol4['Date'] = pd.to_datetime(dfvol4['Date']).dt.date
-dfvol4['Date'] = pd.to_datetime(dfvol4['Date']).dt.strftime('%d/%m/%y')
+#dfvol4['Date'] = pd.to_datetime(dfvol4['Date']).dt.date
+#dfvol4['Date'] = pd.to_datetime(dfvol4['Date']).dt.strftime('%d/%m/%y')
 dfvol5 = dfvol4.head(48)
 dfvol5 = dfvol5[dfvol5.columns.drop('Date')]
 dfvol5= dfvol5.set_index('Vol')
@@ -328,8 +328,8 @@ dffwd4.columns = ["Date","Fwd", "1m2y", "1m5y", "1m10y","1m30y", "3m2y","3m5y","
                           "7y10y", "7y30y", "10y2y", "10y5y", "10y10y", "10y30y", "15y2y", "15y5y",
                            "15y10y", "15y30y", "20y2y", "20y5y", "20y10y", "20y30y"]
 dffwd4=dffwd4.round(2)
-dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.date
-dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.strftime('%d/%m/%y')
+#dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.date
+#dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.strftime('%d/%m/%y')
 dffwd5 = dffwd4.head(48)
 dffwd5 = dffwd5[dffwd5.columns.drop('Date')]
 dffwd5= dffwd5.set_index('Fwd')
@@ -672,8 +672,7 @@ def update_figure(vol1, vol2):
 
     swaptionfig = go.Figure(data=data, layout=layout)
     swaptionfig.update_layout(
-        font=dict(size=10),xaxis=dict
-        (autorange="reversed"))
+        font=dict(size=10))
     return swaptionfig
 
 @callback(Output("swaptionfig1", "figure"),
@@ -694,7 +693,8 @@ def update_figure(vol1, vol2):
 
     swaptionfig1 = go.Figure(data=data, layout=layout)
     swaptionfig1.update_layout(
-        font=dict(size=10),xaxis=dict(autorange="reversed"))
+        font=dict(size=10),)
+        #xaxis=dict(autorange="reversed"))
     return swaptionfig1
 
 @callback(Output("fwdfig", "figure"),
@@ -715,7 +715,7 @@ def update_figure(fwd1, fwd2):
 
     fwdfig = go.Figure(data=data, layout=layout)
     fwdfig.update_layout(
-        font=dict(size=10),xaxis=dict(autorange="reversed"))
+        font=dict(size=10))
     return fwdfig
 
 @callback(Output("fwdfig1", "figure"),
@@ -736,7 +736,7 @@ def update_figure(fwd1, fwd2):
 
     fwdfig1 = go.Figure(data=data, layout=layout)
     fwdfig1.update_layout(
-        font=dict(size=10),xaxis=dict(autorange="reversed"))
+        font=dict(size=10))
     return fwdfig1
 
 
