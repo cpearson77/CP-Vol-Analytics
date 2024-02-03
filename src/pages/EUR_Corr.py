@@ -197,6 +197,7 @@ dfvol = dfvol[dfvol.columns.drop('20y15y')]
 dfvol = dfvol[dfvol.columns.drop('20y20y')]
 dfvol['Date'] = pd.to_datetime(dfvol['Date'], format='%d/%m/%Y')
 dfvol = dfvol.set_index('Date')
+dfvol.at['2019-05-16','1y10y'] =39
 #dfvol=dfvol.round(0)
 dfvol1 = (dfvol-dfvol.shift(-1))*100
 dfvol1 = dfvol1.head(-1)
@@ -216,6 +217,7 @@ dfvol4.columns = ["Date","Vol", "1m2y", "1m5y", "1m10y","1m30y", "3m2y","3m5y","
                           "7y10y", "7y30y", "10y2y", "10y5y", "10y10y", "10y30y", "15y2y", "15y5y",
                            "15y10y", "15y30y", "20y2y", "20y5y", "20y10y", "20y30y"]
 dfvol4=dfvol4.round(2)
+dfvol4 = dfvol4.head(-2000)
 #dfvol4['Date'] = pd.to_datetime(dfvol4['Date']).dt.date
 #dfvol4['Date'] = pd.to_datetime(dfvol4['Date']).dt.strftime('%d/%m/%y')
 dfvol5 = dfvol4.head(48)
@@ -309,7 +311,7 @@ dffwd = dffwd[dffwd.columns.drop('20y15y')]
 dffwd = dffwd[dffwd.columns.drop('20y20y')]
 dffwd['Date'] = pd.to_datetime(dffwd['Date'], format='%d/%m/%Y')
 dffwd = dffwd.set_index('Date')
-dffwd1 = (dffwd-dffwd.shift(-1))*100
+dffwd1 = (dffwd-dffwd.shift(-1))
 dffwd1 = dffwd1.head(-1)
 dffwd2 = dffwd1.rolling(66).corr()
 #dffwd=dffwd.round(2)

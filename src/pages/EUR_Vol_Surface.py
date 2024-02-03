@@ -459,6 +459,7 @@ def update_figure(curve):
         return fig
 
 
+
 columnDefs = [
     {"field": "Date","minWidth": 65},
     {"field": "Exp", "minWidth": 15,"filter": False, "cellClass": "bg-info bg-gradient bg-opacity-15"},
@@ -605,7 +606,7 @@ grid = dag.AgGrid(
     defaultColDef=defaultColDef,
     style={"height": 270, "width": 460, "font-size": '10px'},
     dashGridOptions = {"rowHeight": 25},
-    className="ag-theme-balham"
+    className="ag-theme-balham",
 )
 
 grid2 = dag.AgGrid(
