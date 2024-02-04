@@ -309,7 +309,7 @@ dffwd = dffwd[dffwd.columns.drop('20y3y')]
 dffwd = dffwd[dffwd.columns.drop('20y7y')]
 dffwd = dffwd[dffwd.columns.drop('20y15y')]
 dffwd = dffwd[dffwd.columns.drop('20y20y')]
-#dffwd['Date'] = pd.to_datetime(dffwd['Date'], format='%d/%m/%Y')
+dffwd['Date'] = pd.to_datetime(dffwd['Date'], format='%d/%m/%Y')
 dffwd = dffwd.set_index('Date')
 dffwd1 = (dffwd-dffwd.shift(-1))
 dffwd1 = dffwd1.head(-1)
