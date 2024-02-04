@@ -38,8 +38,8 @@ dfswap4= dfswap4.set_index('Date')
 dfswap4=dfswap4.reset_index(level =0)
 dfswap4.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap4=dfswap4.round(2)
-dfswap4['Date'] = pd.to_datetime(dfswap4['Date']).dt.date
-dfswap4['Date'] = pd.to_datetime(dfswap4['Date']).dt.strftime('%d/%m/%y')
+#dfswap4['Date'] = pd.to_datetime(dfswap4['Date']).dt.date
+#dfswap4['Date'] = pd.to_datetime(dfswap4['Date']).dt.strftime('%d/%m/%y')
 
 #grid of corr 66d lookback
 dfswap5 = dfswap1.rolling(66).corr()
@@ -54,8 +54,8 @@ dfswap7= dfswap7.set_index('Date')
 dfswap7=dfswap7.reset_index(level =0)
 dfswap7.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap7=dfswap7.round(2)
-dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.date
-dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.strftime('%d/%m/%y')
+#dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.date
+#dfswap7['Date'] = pd.to_datetime(dfswap7['Date']).dt.strftime('%d/%m/%y')
 
 #grid of corr 132d lookback
 dfswap8 = dfswap1.rolling(132).corr()
@@ -70,8 +70,8 @@ dfswap10= dfswap10.set_index('Date')
 dfswap10=dfswap10.reset_index(level =0)
 dfswap10.columns = ["Date", "Swap", "1y", "2y", "5y", "10y", "20y", "30y"]
 dfswap10=dfswap10.round(2)
-dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.date
-dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.strftime('%d/%m/%y')
+#dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.date
+#dfswap10['Date'] = pd.to_datetime(dfswap10['Date']).dt.strftime('%d/%m/%y')
 
 #df for graphs 3m lookback
 dfc1 = dfswap1["1y"].rolling(66).corr(dfswap1["2y"])
@@ -309,7 +309,7 @@ dffwd = dffwd[dffwd.columns.drop('20y3y')]
 dffwd = dffwd[dffwd.columns.drop('20y7y')]
 dffwd = dffwd[dffwd.columns.drop('20y15y')]
 dffwd = dffwd[dffwd.columns.drop('20y20y')]
-dffwd['Date'] = pd.to_datetime(dffwd['Date'], format='%d/%m/%Y')
+#dffwd['Date'] = pd.to_datetime(dffwd['Date'], format='%d/%m/%Y')
 dffwd = dffwd.set_index('Date')
 dffwd1 = (dffwd-dffwd.shift(-1))
 dffwd1 = dffwd1.head(-1)
@@ -330,8 +330,8 @@ dffwd4.columns = ["Date","Fwd", "1m2y", "1m5y", "1m10y","1m30y", "3m2y","3m5y","
                           "7y10y", "7y30y", "10y2y", "10y5y", "10y10y", "10y30y", "15y2y", "15y5y",
                            "15y10y", "15y30y", "20y2y", "20y5y", "20y10y", "20y30y"]
 dffwd4=dffwd4.round(2)
-#dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.date
-#dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.strftime('%d/%m/%y')
+dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.date
+dffwd4['Date'] = pd.to_datetime(dffwd4['Date']).dt.strftime('%d/%m/%y')
 dffwd5 = dffwd4.head(48)
 dffwd5 = dffwd5[dffwd5.columns.drop('Date')]
 dffwd5= dffwd5.set_index('Fwd')

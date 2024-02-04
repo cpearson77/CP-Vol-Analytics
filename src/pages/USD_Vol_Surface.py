@@ -237,8 +237,8 @@ dfswap1m = dfswap1m.drop(index='15y', level=1)
 dfswap1m = dfswap1m.reset_index(level=1)
 dfswap1m = dfswap1m.reset_index(level=0)
 dfswap1m.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.date
-#dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.strftime('%d/%m/%y')
+dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.date
+dfswap1m['Date'] = pd.to_datetime(dfswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #1m lookback realised vol
 dfdswap1m = (dfdswap-dfdswap.shift(-22))
@@ -255,8 +255,8 @@ dfdswap1m = dfdswap1m.drop(index='15y', level=1)
 dfdswap1m = dfdswap1m.reset_index(level=1)
 dfdswap1m = dfdswap1m.reset_index(level=0)
 dfdswap1m.columns = ["Date", "Exp","1y", "2y", "3y", "5y", "7y", "10y", "20y", "30y"]
-#dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
-#dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
+dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.date
+dfdswap1m['Date'] = pd.to_datetime(dfdswap1m['Date']).dt.strftime('%d/%m/%y')
 
 #3m lookback vol
 #dfvol3m = pd.read_excel(r"C:\Users\charl\PycharmProjects\pythonProject\master1.xlsx", sheet_name='VolGrid',header=[0,1],index_col=[0])
